@@ -1,0 +1,25 @@
+  {% load static %}
+  <html>
+    <head>
+      <title>Django Channels Status</title>
+    </head>
+    <body>
+      <h1>Check Status</h1>
+
+    <form action="{% url 'status' %}" method="post">
+      {% csrf_token %}
+      <input type="text" placeholder="enter anything" name="TB_sample" id="TB_sample"/><br>
+      <input type="submit" value="submit">
+    </form>
+
+    <script>
+      socket = new WebSocket('ws://127.0.0.1:8000/ws/')
+      socket.onopen=function() {
+        socket.send('hello')
+      }
+      socket.onmessage=function() {
+        alert('socket connected')
+      }
+    </script>
+  </body>
+  </html>
